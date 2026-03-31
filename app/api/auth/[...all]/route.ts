@@ -4,7 +4,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL!;
 const BLOCKED = new Set(['host','content-length','connection','transfer-encoding']);
 
 async function proxy(request: NextRequest): Promise<NextResponse> {
-  // CORREÇÃO: Adicionado as crases (backticks) na linha abaixo
+  // CORREÇÃO: Adicionado as crases na linha abaixo
   const url = `${API_URL}${request.nextUrl.pathname}${request.nextUrl.search}`;
   
   const headers = new Headers();
