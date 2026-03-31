@@ -4,7 +4,9 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL!;
 const BLOCKED = new Set(['host','content-length','connection','transfer-encoding']);
 
 async function proxy(request: NextRequest): Promise<NextResponse> {
-  const url = ${API_URL}${request.nextUrl.pathname}${request.nextUrl.search};
+  // CORREÇÃO: Adicionado as crases (backticks) na linha abaixo
+  const url = `${API_URL}${request.nextUrl.pathname}${request.nextUrl.search}`;
+  
   const headers = new Headers();
   request.headers.forEach((v, k) => { if (!BLOCKED.has(k)) headers.set(k, v); });
 
@@ -20,3 +22,6 @@ async function proxy(request: NextRequest): Promise<NextResponse> {
 
 export const GET = proxy;
 export const POST = proxy;
+export const PUT = proxy;
+export const DELETE = proxy;
+export const PATCH = proxy;
